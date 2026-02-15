@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teacher Dashboard - Student Sphere</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- FontAwesome for Icons (Optional/CDN) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <nav class="sidebar">
+            <div class="sidebar-header">
+                <h3>Student Sphere</h3>
+                <p>Teacher Panel</p>
+            </div>
+            <ul class="nav-links">
+                <li class="active" data-section="files"><i class="fas fa-folder"></i> My Content</li>
+                <li data-section="students"><i class="fas fa-users"></i> Students</li>
+                <li><a href="chat.html"
+                        style="text-decoration:none; color:inherit; display:flex; gap:10px; width:100%;"><i
+                            class="fas fa-comment"></i> Messages</a></li>
+                <li><a href="class-chat.html"
+                        style="text-decoration:none; color:inherit; display:flex; gap:10px; width:100%;"><i
+                            class="fas fa-comments"></i> Class Chat</a></li>
+
+                <li><a href="live.html"
+                        style="text-decoration:none; color:inherit; display:flex; gap:10px; width:100%;"><i
+                            class="fas fa-video"></i> Live Class</a></li>
+                <li data-section="settings"><i class="fas fa-cog"></i> Settings</li>
+            </ul>
+            <div class="logout-section">
+                <button id="logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</button>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header>
+                <h2 id="welcome-msg">Welcome, Teacher</h2>
+                <div class="date-display" id="date-display"></div>
+            </header>
+
+            <!-- Files Section -->
+            <section id="files-section" class="content-section active">
+                <div class="section-header">
+                    <h3>Course Materials</h3>
+                    <button class="btn primary small" id="open-upload-modal"><i class="fas fa-plus"></i> Upload
+                        New</button>
+                </div>
+
+                <div class="files-grid" id="files-grid">
+                    <!-- Files injected by JS -->
+                    <p class="empty-state">No files uploaded yet.</p>
+                </div>
+            </section>
+
+            <!-- Students Section -->
+            <section id="students-section" class="content-section hidden">
+                <div class="section-header">
+                    <h3>Enrolled Students</h3>
+                </div>
+                <div class="table-responsive">
+                    <table class="student-table">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Joined Date</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="student-list-body">
+                            <!-- Students injected by JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Settings Section -->
+            <section id="settings-section" class="content-section hidden">
+                <div class="settings-card">
+                    <h3>Profile Settings</h3>
+                    <form id="settings-form">
+                        <div class="input-group">
+                            <label>Username</label>
+                            <input type="text" id="settings-username" disabled>
+                        </div>
+                        <div class="input-group">
+                            <label>Dashboard Number (Your Unique Connection ID)</label>
+                            <div class="id-wrapper">
+                                <input type="text" id="settings-dashboard-id" maxlength="12" pattern="\d{12}" required>
+                                <button type="submit" class="btn secondary">Update ID</button>
+                            </div>
+                            <small class="warning-text">Warning: Changing this will unlink all currently linked
+                                students.</small>
+                        </div>
+                    </form>
+
+                    <hr style="margin: 40px 0; border: none; border-top: 1px solid var(--card-border);">
+
+                    <h3 style="color: var(--error-color); margin-bottom: 15px;">Danger Zone</h3>
+                    <p style="color: var(--text-secondary); margin-bottom: 15px; font-size: 0.9rem;">
+                        Once you delete your account, there is no going back. This will permanently delete your account
+                        and all associated data.
+                    </p>
+                    <button id="delete-account-btn" class="btn danger" style="width: auto;">
+                        <i class="fas fa-trash"></i> Delete Account
+                    </button>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Viewer Modal -->
+    <div id="viewer-modal" class="modal hidden">
+        <div class="modal-content viewer-content">
+            <span class="close-modal"
+                onclick="document.getElementById('viewer-modal').classList.add('hidden')">&times;</span>
+            <div id="viewer-body" class="viewer-body">
+                <!-- Content injected here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Upload Modal -->
+    <div id="upload-modal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h3>Upload Content</h3>
+            <form id="upload-form">
+                <div class="input-group">
+                    <label>File Name</label>
+                    <input type="text" id="file-name" required placeholder="e.g., Math Notes Chapter 1">
+                </div>
+                <div class="input-group">
+                    <label>File Type</label>
+                    <select id="file-type">
+                        <option value="pdf">Note (PDF)</option>
+                        <option value="video">Video</option>
+                        <option value="image">Image</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label>Select File</label>
+                    <input type="file" id="file-upload-input" required>
+                    <small>Note: Large files may not persist in localStorage demo.</small>
+                </div>
+                <button type="submit" class="btn primary">Upload</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="teacher.js"></script>
+</body>
+
+</html>

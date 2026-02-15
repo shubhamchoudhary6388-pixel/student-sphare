@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard - Student Sphere</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <nav class="sidebar">
+            <div class="sidebar-header">
+                <h3>Student Sphere</h3>
+                <p>Student Portal</p>
+            </div>
+            <ul class="nav-links">
+                <li class="active" data-section="files"><i class="fas fa-folder"></i> Class Materials</li>
+                <li><a href="chat.html"
+                        style="text-decoration:none; color:inherit; display:flex; gap:10px; width:100%;"><i
+                            class="fas fa-comment"></i> Messages</a></li>
+                <li><a href="class-chat.html"
+                        style="text-decoration:none; color:inherit; display:flex; gap:10px; width:100%;"><i
+                            class="fas fa-comments"></i> Class Chat</a></li>
+
+                <li><a href="live.html"
+                        style="text-decoration:none; color:inherit; display:flex; gap:10px; width:100%;"><i
+                            class="fas fa-video"></i> Live Class</a></li>
+                <li data-section="settings"><i class="fas fa-cog"></i> Settings</li>
+            </ul>
+            <div class="logout-section">
+                <button id="logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</button>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header>
+                <div class="header-left">
+                    <h2 id="welcome-msg">Welcome, Student</h2>
+                    <p id="teacher-info" class="subtitle"></p>
+                </div>
+                <div class="search-container">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="file-search" placeholder="Search materials...">
+                </div>
+            </header>
+
+            <!-- Files Section -->
+            <section id="files-section" class="content-section active">
+                <div class="section-header">
+                    <h3>Available Content</h3>
+                </div>
+
+                <div class="files-grid" id="files-grid">
+                    <!-- Files injected by JS -->
+                </div>
+            </section>
+
+            <!-- Settings Section -->
+            <section id="settings-section" class="content-section hidden">
+                <div class="settings-card">
+                    <h3>Account Settings</h3>
+                    <div class="input-group">
+                        <label>Username</label>
+                        <input type="text" id="student-username" disabled>
+                    </div>
+                    <div class="input-group">
+                        <label>Linked to Teacher</label>
+                        <input type="text" id="student-teacher" disabled>
+                    </div>
+
+                    <div id="relink-section"
+                        style="display: none; background: rgba(59, 130, 246, 0.1); padding: 15px; border-radius: 8px; border: 1px solid var(--primary-color); margin-top: 20px;">
+                        <h4 style="color: var(--primary-color); margin-bottom: 10px;">Connect to a Teacher</h4>
+                        <p style="font-size: 0.9rem; margin-bottom: 15px;">You are not currently linked to any class.
+                            Enter a dashboard ID to join.</p>
+                        <form id="relink-form">
+                            <div class="input-group">
+                                <label>Teacher Dashboard ID</label>
+                                <input type="text" id="relink-dashboard-id" placeholder="12-digit ID" maxlength="12"
+                                    pattern="\d{12}" required>
+                            </div>
+                            <button type="submit" class="btn primary small">Link Account</button>
+                        </form>
+                    </div>
+
+                    <hr style="margin: 40px 0; border: none; border-top: 1px solid var(--card-border);">
+
+                    <h3 style="color: var(--error-color); margin-bottom: 15px;">Danger Zone</h3>
+                    <p style="color: var(--text-secondary); margin-bottom: 15px; font-size: 0.9rem;">
+                        Once you delete your account, there is no going back. This will permanently delete your account.
+                    </p>
+                    <button id="delete-account-btn" class="btn danger" style="width: auto;">
+                        <i class="fas fa-trash"></i> Delete Account
+                    </button>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Viewer Modal -->
+    <div id="viewer-modal" class="modal hidden">
+        <div class="modal-content viewer-content">
+            <span class="close-modal"
+                onclick="document.getElementById('viewer-modal').classList.add('hidden')">&times;</span>
+            <div id="viewer-body" class="viewer-body">
+                <!-- Content injected here -->
+            </div>
+        </div>
+    </div>
+
+    <script src="student.js"></script>
+</body>
+
+</html>

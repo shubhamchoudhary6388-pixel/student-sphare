@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Class - Student Sphere</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://meet.jit.si/external_api.js"></script>
+</head>
+
+<body>
+    <div class="dashboard-container" style="height: 100vh; overflow: hidden;">
+        <!-- Simplified Sidebar (Collapsed by default or minimal) -->
+        <nav class="sidebar collapsed-mobile" style="width: 80px; min-width: 80px;">
+            <div class="sidebar-header" style="padding: 15px 0; text-align: center;">
+                <i class="fas fa-graduation-cap" style="font-size: 2rem; color: var(--primary-color);"></i>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#" id="back-link" title="Back to Dashboard" style="justify-content: center;"><i
+                            class="fas fa-arrow-left"></i></a></li>
+                <li class="active"><a href="#" title="Live Class" style="justify-content: center;"><i
+                            class="fas fa-video"></i></a></li>
+            </ul>
+        </nav>
+
+        <!-- Main Live Area -->
+        <main class="live-content"
+            style="flex: 1; display: flex; flex-direction: column; background: #000; position: relative;">
+
+            <div id="jitsi-container" style="width: 100%; height: 100%;"></div>
+        </main>
+
+        <!-- Live Chat Sidebar -->
+        <aside class="chat-sidebar" id="live-chat-sidebar"
+            style="width: 300px; border-left: 1px solid var(--card-border); background: var(--card-bg); display: flex; flex-direction: column;">
+            <div class="chat-header">
+                <h3>Live Chat</h3>
+                <span class="live-badge">LIVE</span>
+            </div>
+            <div class="messages-container" id="live-messages" style="flex: 1; overflow-y: auto; padding: 15px;">
+                <!-- Messages go here -->
+            </div>
+            <div class="chat-input-area" style="padding: 15px; border-top: 1px solid var(--card-border);">
+                <form id="live-chat-form" style="display: flex; gap: 10px;">
+                    <input type="text" id="live-input" placeholder="Say something..." autocomplete="off">
+                    <button type="submit" class="btn primary small"><i class="fas fa-paper-plane"></i></button>
+                </form>
+            </div>
+        </aside>
+    </div>
+
+    <script src="live.js"></script>
+</body>
+
+</html>

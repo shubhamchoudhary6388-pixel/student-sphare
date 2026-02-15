@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account Diagnostic - Student Sphere</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>Account Diagnostic</h1>
+            <p>Check your account status</p>
+        </header>
+
+        <div class="auth-box">
+            <h2>Your Account Information</h2>
+            <div id="diagnostic-info"
+                style="font-family: monospace; background: rgba(0,0,0,0.2); padding: 20px; border-radius: 8px; margin-top: 20px;">
+                <p>Loading...</p>
+            </div>
+            <button onclick="window.location.href='index.html'" class="btn primary" style="margin-top: 20px;">
+                Back to Login
+            </button>
+        </div>
+    </div>
+
+    <script>
+        const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        const infoDiv = document.getElementById('diagnostic-info');
+
+        if (!currentUser) {
+            infoDiv.innerHTML = '<p style="color: var(--error-color);">❌ No user logged in</p>';
+        } else {
+            let html = '<h3>Current User Data:</h3>';
+            html += `<p><strong>Username:</strong> ${currentUser.username || 'MISSING'}</p>`;
+            html += `<p><strong>Role:</strong> ${currentUser.role || 'MISSING'}</p>`;
+            html += `<p><strong>Dashboard ID:</strong> ${currentUser.dashboardId || '❌ MISSING (THIS IS THE PROBLEM!)'}</p>`;
+            html += `<p><strong>Linked Teacher ID:</strong> ${currentUser.linkedTeacherId || 'N/A (only for students)'}</p>`;
+            html += `<p><strong>Password Set:</strong> ${currentUser.password ? '✅ Yes' : '❌ No'}</p>`;
+
+            html += '<hr style="margin: 20px 0; border-color: var(--card-border);">';
+            html += '<h3>Diagnosis:</h3>';
+
+            if (currentUser.role === 'teacher' && !currentUser.dashboardId) {
+                html += '<p style="color: var(--error-color);">❌ <strong>PROBLEM FOUND:</strong> Your teacher account is missing a Dashboard ID!</p>';
+                html += '<p style="color: var(--accent-color);">✅ <strong>Solution:</strong> Delete your account and re-register to create a new Dashboard ID.</p>';
+            } else if (currentUser.role === 'student' && !currentUser.linkedTeacherId) {
+                html += '<p style="color: var(--error-color);">❌ <strong>PROBLEM FOUND:</strong> You are not linked to any teacher!</p>';
+                html += '<p style="color: var(--accent-color);">✅ <strong>Solution:</strong> Go to Settings and use the Re-link feature to connect to your teacher.</p>';
+            } else {
+                html += '<p style="color: var(--success-color);">✅ Your account looks good! All required fields are present.</p>';
+            }
+
+            infoDiv.innerHTML = html;
+        }
+    </script>
+</body>
+
+</html>

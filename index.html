@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Student Sphere</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>Student Sphere</h1>
+            <p>Connect. Learn. Grow.</p>
+        </header>
+
+        <div class="auth-box">
+            <!-- TABS -->
+            <div
+                style="display: flex; justify-content: center; margin-bottom: 20px; border-bottom: 1px solid var(--card-border);">
+                <button id="tab-login" class="btn"
+                    style="background: transparent; color: var(--primary-color); border-bottom: 2px solid var(--primary-color); border-radius: 0;">Login</button>
+                <button id="tab-register" class="btn"
+                    style="background: transparent; color: var(--text-secondary); border-radius: 0;">Register</button>
+            </div>
+
+            <!-- LOGIN FORM -->
+            <form id="login-form">
+                <h2>Welcome Back</h2>
+                <div class="input-group">
+                    <label>Username</label>
+                    <input type="text" id="login-username" required>
+                </div>
+                <div class="input-group">
+                    <label>User ID / Password</label>
+                    <input type="password" id="login-userid" required>
+                </div>
+                <button type="submit" class="btn primary">Login</button>
+            </form>
+
+            <!-- REGISTER FORM -->
+            <form id="register-form" class="hidden">
+                <h2>Create Account</h2>
+
+                <div class="input-group">
+                    <label>I am a:</label>
+                    <div class="role-selector">
+                        <label><input type="radio" name="role" value="student" checked> Student</label>
+                        <label><input type="radio" name="role" value="teacher"> Teacher</label>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label>Username</label>
+                    <input type="text" id="reg-username" required>
+                </div>
+
+                <div class="input-group">
+                    <label>User ID (Password)</label>
+                    <input type="password" id="reg-userid" required>
+                    <small>Remember this ID, you will need it to login.</small>
+                </div>
+
+                <!-- Teacher Fields -->
+                <div id="teacher-fields" class="hidden">
+                    <div class="input-group">
+                        <label>Dashboard Number</label>
+                        <input type="text" id="reg-dashboard" placeholder="12-digit number" maxlength="12">
+                        <small>Must be exactly 12 digits.</small>
+                    </div>
+                </div>
+
+                <!-- Student Fields -->
+                <div id="student-fields">
+                    <div class="input-group">
+                        <label>Connect to Teacher (Dashboard ID)</label>
+                        <input type="text" id="reg-connect" placeholder="Enter Teacher's 12-digit ID" maxlength="12">
+                    </div>
+                </div>
+
+                <button type="submit" class="btn primary">Register</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="index.js"></script>
+</body>
+
+</html>

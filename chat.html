@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Messages - Student Sphere</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="chat-layout">
+        <!-- Contact List Sidebar -->
+        <aside class="chat-sidebar">
+            <div class="sidebar-header">
+                <button id="back-btn" class="back-btn"><i class="fas fa-arrow-left"></i> Back</button>
+                <h3>Messages</h3>
+            </div>
+            <div class="contact-list" id="contact-list">
+                <!-- Contacts injected by JS -->
+                <p class="loading-text">Loading contacts...</p>
+            </div>
+        </aside>
+
+        <!-- Chat Area -->
+        <main class="chat-main">
+            <header class="chat-header">
+                <h3 id="chat-title">Select a contact to start chatting</h3>
+            </header>
+
+            <div class="messages-container" id="messages-container">
+                <!-- Messages injected by JS -->
+                <div class="empty-chat-state">
+                    <i class="fas fa-comments"></i>
+                    <p>Start a conversation</p>
+                </div>
+            </div>
+
+            <footer class="chat-input-area hidden" id="chat-footer">
+                <button class="attach-btn" id="attach-btn" title="Send Image/Video"><i
+                        class="fas fa-paperclip"></i></button>
+                <input type="file" id="chat-file-input" class="hidden" accept="image/*,video/*,application/pdf,.pdf">
+
+                <input type="text" id="message-input" placeholder="Type a message...">
+                <button class="send-btn" id="send-btn"><i class="fas fa-paper-plane"></i></button>
+            </footer>
+        </main>
+    </div>
+
+    <script src="chat.js"></script>
+</body>
+
+</html>
